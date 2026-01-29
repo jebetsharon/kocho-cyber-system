@@ -20,14 +20,16 @@ def create_app(config_class=Config):
     jwt.init_app(app)
     
     # Register blueprints
-    from app.routes import auth
+    from app.routes import auth, services, customers, inventory, orders, reports, expenses
     
     app.register_blueprint(auth.bp)
-   
-    @app.route("/")
-    def home():
-       return "Docker + Flask is running!"
- 
+    app.register_blueprint(services.bp)
+    app.register_blueprint(customers.bp)
+    app.register_blueprint(inventory.bp)
+    app.register_blueprint(orders.bp)
+    app.register_blueprint(reports.bp)
+    app.register_blueprint(expenses.bp)
+    
     @app.route('/api/health')
     def health_check():
         return {'status': 'healthy', 'message': 'Kocho Printers API is running'}, 200

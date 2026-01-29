@@ -6,8 +6,10 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'kocho-dev-secret-key'
     
     # Database
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'postgresql://kocho_admin:kocho_secure_pass_2024@localhost:5432/kocho_cyber_db'
+    SQLALCHEMY_DATABASE_URI = os.getenv(
+        "DATABASE_URL",
+        "postgresql://postgres:123456@db:5432/kocho_db"
+    )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # JWT
