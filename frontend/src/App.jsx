@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 // Pages
@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Services from './pages/Services';
 import Orders from './pages/Orders';
-import NewOrder from './pages/NewOrder';
+import NewOrder from './pages/NewOrders';
 import Customers from './pages/Customers';
 import Inventory from './pages/Inventory';
 import Reports from './pages/Reports';

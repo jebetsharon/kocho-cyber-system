@@ -8,7 +8,7 @@ import {
   UserGroupIcon,
   ExclamationTriangleIcon,
   ClockIcon,
-  TrendingUpIcon
+  ArrowTrendingUpIcon
 } from '@heroicons/react/24/outline';
 
 const Dashboard = () => {
@@ -50,7 +50,7 @@ const Dashboard = () => {
     {
       name: "Monthly Sales",
       value: `KSh ${stats?.month_sales?.toLocaleString() || 0}`,
-      icon: TrendingUpIcon,
+      icon: ArrowTrendingUpIcon,
       color: 'bg-blue-500',
       subtext: `${stats?.month_orders || 0} orders`,
     },
@@ -229,7 +229,7 @@ const Dashboard = () => {
             to="/reports"
             className="flex flex-col items-center justify-center p-4 border-2 border-primary-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
           >
-            <TrendingUpIcon className="h-8 w-8 text-primary-500 mb-2" />
+            <ArrowTrendingUpIcon className="h-8 w-8 text-primary-500 mb-2" />
             <span className="text-sm font-medium text-gray-900">Reports</span>
           </Link>
         </div>
