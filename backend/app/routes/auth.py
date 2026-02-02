@@ -42,28 +42,35 @@ def register():
 
 @bp.route('/login', methods=['POST'])
 def login():
-    data = request.get_json()
-    
-    if not data.get('username') or not data.get('password'):
+    data = request.get_json(silent=True)
+
+    if not data:
+        return jsonify({'error': 'Invalid or missing JSON body'}), 400
+
+    username = data.get('username')
+    password = data.get('password')
+
+    if not username or not password:
         return jsonify({'error': 'Username and password required'}), 400
-    
-    user = User.query.filter_by(username=data['username']).first()
-    
-    if not user or not user.check_password(data['password']):
+
+    user = User.query.filter_by(username=username).first()
+
+    if not user or not user.check_password(password):
         return jsonify({'error': 'Invalid credentials'}), 401
-    
+
     if not user.is_active:
         return jsonify({'error': 'Account is deactivated'}), 403
-    
+
     access_token = create_access_token(identity=user.id)
     refresh_token = create_refresh_token(identity=user.id)
-    
+
     return jsonify({
         'message': 'Login successful',
         'access_token': access_token,
         'refresh_token': refresh_token,
         'user': user.to_dict()
     }), 200
+
 
 
 @bp.route('/refresh', methods=['POST'])
